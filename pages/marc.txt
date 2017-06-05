@@ -1,0 +1,44 @@
+per assignar
+Formulari amb un desplegable de usuaris i un desplegable de quadres
+
+
+
+per desassignar
+Llistat de Usuaris i quadres
+select u.nom, u.cognom1, u.cognom2, u.tipus, q.nom, g.nom, a.id,
+a.actiu
+from usuaris u, assignat a, quadres q, granges g
+where g.id=q.id_granja and q.id=a.id_quadra and
+a.id_treballador=u.id 
+
+
+
+Granja xxx  Quadra1   Pere Alonso  Veterinari   Desassignar (Actiu=0)   a partir del a.id
+Granja xxx Quadra2 Pere ALonso Veterinari
+Granja xxx Quadra2 PAco ALonso Treballador
+
+
+Veterinari:
+//2 pagines, llistat tractament i crear 
+Tractaments: 1 taula -->crear i mostrar tractaments
+LLista de vedells malalts 
+
+//llista de vedells malalts
+select q.nom, g.nom, v.codi,
+from assignat a, quadres q, granges g, vedells v
+where g.id=q.id_granja and q.id=a.id_quadra and
+a.id_treballador="SESSION"  AND
+q.id=vedells.id_quadra AND v.estat=2
+
+//llista de tractaments realitzats
+
+select q.nom, g.nom, v.codi, t.descripcio, tv.data_inici
+from tractament_vedell tv, tractaments t, quadres q, 
+granges g, vedells v
+where g.id=q.id_granja and q.id=vedells.id_quadra and
+tv.id_treballador="SESSION"  AND tv.id_vedell=v.codi
+AND tv.id_tractament=t.id
+ORDER BY tv.data_inici, 
+
+//ordenat per granja
+
